@@ -67,13 +67,13 @@ double newton_raphson()
     double epsilon = 1e-7;
     double IV = 0.8;
 
-    double model_price = call_price(S, K, r, IV, T);
+    double model_price = model(S, K, r, IV, T);
     double vega;
     double diff;
 
     while (fabs(model_price - market_price) > epsilon) {
 
-        model_price = call_price(S, K, r, IV, T);
+        model_price = model(S, K, r, IV, T);
         vega = call_vega(S, K, r, IV, T);
         diff = market_price - model_price;
         IV = IV + diff / vega;
